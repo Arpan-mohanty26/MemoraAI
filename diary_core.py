@@ -62,20 +62,15 @@ It's important to know that you're not alone, and there are people who want to h
 Your feelings are valid, but there are healthier ways to work through difficult times."""
 
     prompt = f"""
-You are an empathetic diary assistant. Analyze this journal entry and provide a concise, supportive response with:
+You are a kind, thoughtful diary companion helping someone reflect on their journal entry. Read the following entry and write a supportive, empathetic response in a natural, flowing paragraph (around 200–250 words). 
 
-1. **Summary** (1-2 sentences): Brief overview of what happened
-2. **Mood** (1 word + brief explanation): Current emotional state  
-3. **Insight** (1-2 sentences): A gentle observation or pattern you notice
-4. **Question** (1 question): A thoughtful follow-up to encourage deeper reflection
-
-Keep your response warm, concise, and under 150 words total.
+Offer encouragement, reflect gently on what the person might be feeling, notice any patterns or emotional shifts, and if appropriate, ask a thoughtful follow-up question to deepen their self-understanding. Keep the tone warm, conversational, and human — like a wise friend who truly cares.
 
 Entry: "{text}"
 
-Format your response clearly with emojis and be encouraging.
+Avoid listing items. Just write a single, natural response.
 """
-    
+
     try:
         response = model.generate_content(prompt)
         return response.text.strip()
@@ -86,34 +81,34 @@ def analyze_mood_trends(entries):
     """Analyze mood trends from recent entries"""
     if len(entries) < 3:
         return None
-    
+
     # Get last 7 days of entries
     recent_entries = {}
     current_date = datetime.now().date()
-    
+
     for i in range(7):
         check_date = current_date - timedelta(days=i)
         date_str = check_date.strftime("%Y-%m-%d")
         if date_str in entries:
             recent_entries[date_str] = entries[date_str]
-    
+
     if not recent_entries:
         return None
-    
+
     # Simple mood scoring based on positive/negative words
     positive_words = ['happy', 'good', 'great', 'amazing', 'wonderful', 'excited', 'joy', 'love', 'grateful', 'blessed', 'accomplished', 'proud']
     negative_words = ['sad', 'bad', 'terrible', 'awful', 'depressed', 'angry', 'frustrated', 'worried', 'anxious', 'stressed', 'disappointed', 'tired']
-    
+
     mood_scores = {}
     for date, text in recent_entries.items():
         text_lower = text.lower()
         positive_count = sum(1 for word in positive_words if word in text_lower)
         negative_count = sum(1 for word in negative_words if word in text_lower)
-        
+
         # Simple scoring: positive words add points, negative subtract
         score = positive_count - negative_count + 5  # +5 to keep scores positive
         mood_scores[date] = max(0, min(10, score))  # Clamp between 0-10
-    
+
     return mood_scores
 
 def get_writing_prompt():
@@ -130,7 +125,7 @@ def get_writing_prompt():
         "Who has had a positive impact on your life recently?",
         "What are you looking forward to?"
     ]
-    
+
     import random
     return random.choice(prompts)
 
@@ -139,13 +134,13 @@ def export_entries_to_text():
     entries = load_entries()
     if not entries:
         return None
-    
+
     export_content = "# My Journal Entries\n\n"
     for date, text in sorted(entries.items()):
         export_content += f"## {date}\n\n{text}\n\n---\n\n"
-    
+
     export_path = f"data/journal_export_{datetime.now().strftime('%Y%m%d')}.txt"
     with open(export_path, "w") as f:
         f.write(export_content)
-    
+
     return export_path
