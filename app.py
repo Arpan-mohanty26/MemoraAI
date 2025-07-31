@@ -46,6 +46,8 @@ html, body, [class*="st-"] {
 
 /* --- Colorful Icon/Logo Styling --- */
 .colorful-icon {
+    display: inline-block; /* Ensures proper alignment */
+    margin-right: 0.5em; /* Adds some space between icon and text */
     text-shadow: 0 0 2px #ff1493, 0 0 5px #00b894, 0 0 8px #ffb86c;
 }
 
@@ -165,7 +167,7 @@ div.stButton > button[kind="primary"]:active {
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown(f'<h1 class="main-header"><span class="colorful-icon">🧠</span> MemoraAI</h1>', unsafe_allow_html=True)
+st.markdown(f'<h1 class="main-header"><span class="colorful-icon">🧠</span>MemoraAI</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Your intelligent diary companion for self-reflection and growth.</p>', unsafe_allow_html=True)
 
 # Sidebar
@@ -207,7 +209,7 @@ with st.sidebar:
                 st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
-    st.markdown(f'### <span class="colorful-icon">💡</span> Tips')
+    st.markdown(f'### <span class="colorful-icon">💡</span>Tips')
     st.info("Write about your feelings, experiences, and thoughts. Be honest and authentic for better insights.")
 
 # Main content area
@@ -224,16 +226,17 @@ with col1:
                 reflection = reflect_on_entry(user_input)
 
             if "SAFETY_CONCERN" in reflection:
-                st.error(f'<span class="colorful-icon">🚨</span> I noticed some concerning thoughts. Please consider reaching out to a mental health professional.', unsafe_allow_html=True)
+                st.error("I noticed some concerning thoughts. Please consider reaching out to a mental health professional.", icon="🚨")
                 st.info(f'📞 Crisis Resources:\n- National Suicide Prevention Lifeline: 988\n- Crisis Text Line: Text HOME to 741741')
             else:
-                st.success(f'<span class="colorful-icon">✅</span> Entry saved and reflection ready!', icon="✅")
+                st.success("Entry saved and reflection ready!", icon="✅")
+                # FIXED BLOCK: This now correctly renders the colorful icon inside the reflection box
                 st.markdown('<div class="reflection-box">', unsafe_allow_html=True)
-                st.markdown(f'#### <span class="colorful-icon">🪞</span> AI Reflection')
+                st.markdown(f'#### <span class="colorful-icon">🪞</span>AI Reflection', unsafe_allow_html=True)
                 st.markdown(reflection)
                 st.markdown('</div>', unsafe_allow_html=True)
         else:
-            st.warning(f'<span class="colorful-icon">⚠️</span> Please write something first.', icon="⚠️")
+            st.warning("Please write something first.", icon="⚠️")
 
 with col2:
     st.subheader("Quick Stats")
@@ -281,4 +284,4 @@ if entries:
                     char_count = len(text)
                     st.info(f'📝 {word_count} words, {char_count} characters')
 else:
-    st.info(f'<span class="colorful-icon">🌟</span> Start your journaling journey by writing your first entry above!')
+    st.info(f'<span class="colorful-icon">🌟</span> Start your journaling journey by writing your first entry above!', unsafe_allow_html=True)
