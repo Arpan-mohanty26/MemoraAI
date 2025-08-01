@@ -209,7 +209,7 @@ with st.sidebar:
                 st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
-    st.markdown(f'### <span class="colorful-icon">💡</span>Tips')
+    st.markdown(f'💡Tips')
     st.info("Write about your feelings, experiences, and thoughts. Be honest and authentic for better insights.")
 
 # Main content area
