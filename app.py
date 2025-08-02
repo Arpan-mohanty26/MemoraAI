@@ -19,48 +19,46 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/* --- :root variables for the Modular Dark theme --- */
 :root {
-    --primary-bg-color: #1a1a1d; /* Deep Charcoal */
-    --card-bg-color: #2c2c34;
-    --text-color: #e1e1e6;
-    --subtle-text-color: #9999a1;
-    --border-color: #40404a;
-    
-    /* Module-specific Accent Colors */
-    --accent-main: #9147ff;      /* Violet */
-    --accent-sidebar: #00b894;   /* Teal */
-    --accent-history: #ffb86c;   /* Amber */
-    --accent-danger: #ff5555;    /* Red */
-    
+    --primary-bg-color: #111; /* Darker charcoal */
+    --card-bg-color: #1e1e28;
+    --text-color: #f1c40f; /* Soft gold */
+    --subtle-text-color: #a0aec0;
+    --border-color: #333;
+
+    /* Accent Theme: Neon Blue */
+    --accent-main: #00ffff;     /* Cyan Blue */
+    --accent-sidebar: #20c997;  /* Teal Green */
+    --accent-history: #ffd700;  /* Golden Yellow */
+    --accent-danger: #ff4d4d;   /* Vibrant Red */
+
     --font-sans-serif: 'Poppins', sans-serif;
-    --border-radius: 8px; 
+    --border-radius: 10px;
 }
 
-/* --- Base & Typography --- */
+/* Base */
 html, body, [class*="st-"] {
     font-family: var(--font-sans-serif);
     background-color: var(--primary-bg-color);
     color: var(--text-color);
 }
 
-/* --- Colorful Icon/Logo Styling --- */
+/* Icon / Logo Effects */
 .colorful-icon {
-    display: inline-block; /* Ensures proper alignment */
-    margin-right: 0.5em; /* Adds some space between icon and text */
-    text-shadow: 0 0 2px #ff1493, 0 0 5px #00b894, 0 0 8px #ffb86c;
+    display: inline-block;
+    margin-right: 0.5em;
+    text-shadow: 0 0 3px #00ffff, 0 0 5px #f1c40f, 0 0 8px #ff4d4d;
 }
 
-/* --- Main Header --- */
+/* Header & Subtitles */
 .main-header {
     font-size: 3.5rem;
     font-weight: 700;
     text-align: center;
-    color: var(--text-color);
+    color: #00ffff; /* Neon Blue */
     padding-top: 2rem;
     margin-bottom: 0.5rem;
 }
-
 .subtitle {
     text-align: center;
     color: var(--subtle-text-color);
@@ -69,7 +67,7 @@ html, body, [class*="st-"] {
     margin-bottom: 4rem;
 }
 
-/* --- Module 1: Main Entry Form (Violet Accent) --- */
+/* Text Area */
 .stTextArea textarea {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
@@ -79,10 +77,10 @@ html, body, [class*="st-"] {
 }
 .stTextArea textarea:focus {
     border-color: var(--accent-main);
-    box-shadow: 0 0 0 3px rgba(145, 71, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.3);
 }
 
-/* --- FINAL ELEGANT BUTTON DESIGN --- */
+/* Button Styling */
 div.stButton > button[kind="primary"] {
     background: transparent;
     border: 2px solid var(--accent-main);
@@ -93,25 +91,25 @@ div.stButton > button[kind="primary"] {
     transition: all 0.3s ease-in-out;
 }
 div.stButton > button[kind="primary"]:hover {
-    color: #c7a4ff; /* Brighter violet text on hover */
-    border-color: #c7a4ff; /* Brighter violet border on hover */
-    box-shadow: 0 0 25px rgba(145, 71, 255, 0.6); /* Expanded glow */
-    transform: translateY(-2px); /* Subtle lift effect */
+    color: #a2fafa;
+    border-color: #a2fafa;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    transform: translateY(-2px);
 }
 div.stButton > button[kind="primary"]:active {
-    transform: translateY(0px) scale(0.98);
+    transform: translateY(0px) scale(0.97);
 }
 
-
+/* Reflection Box */
 .reflection-box {
-    background: rgba(145, 71, 255, 0.1);
+    background: rgba(0, 255, 255, 0.1);
     border-left: 3px solid var(--accent-main);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     margin: 1.5rem 0;
 }
 
-/* --- Module 2: Sidebar & Stats (Teal Accent) --- */
+/* Sidebar & Stats */
 .st-emotion-cache-16txtl3 {
     background-color: var(--card-bg-color);
     border-right: 1px solid var(--border-color);
@@ -122,11 +120,11 @@ div.stButton > button[kind="primary"]:active {
     padding-left: 10px;
     border-radius: var(--border-radius);
 }
-.st-emotion-cache-16txtl3 h3 { /* Tip Header */
+.st-emotion-cache-16txtl3 h3 {
     color: var(--accent-sidebar);
 }
 
-/* --- Module 3: History (Amber Accent) --- */
+/* Entry History */
 .stExpander {
     background: var(--card-bg-color);
     border: 1px solid var(--border-color);
@@ -150,7 +148,7 @@ div.stButton > button[kind="primary"]:active {
     margin-bottom: 1rem;
 }
 
-/* --- Mood Indicators --- */
+/* Mood Tags */
 .mood-indicator {
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
@@ -159,10 +157,23 @@ div.stButton > button[kind="primary"]:active {
     margin: 0.2rem;
     border: 1px solid;
 }
-.mood-positive { border-color: var(--accent-sidebar); color: var(--accent-sidebar); }
-.mood-neutral  { border-color: var(--accent-history); color: var(--accent-history); }
-.mood-negative { border-color: var(--accent-danger); color: var(--accent-danger); }
-.mood-concerning { background: var(--accent-danger); color: white; border-color: var(--accent-danger); }
+.mood-positive {
+    border-color: #00e676;
+    color: #00e676;
+}
+.mood-neutral {
+    border-color: #ffd700;
+    color: #ffd700;
+}
+.mood-negative {
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+}
+.mood-concerning {
+    background: #c0392b;
+    color: white;
+    border-color: #c0392b;
+}
 </style>
 """, unsafe_allow_html=True)
 
