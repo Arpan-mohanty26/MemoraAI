@@ -22,7 +22,7 @@ st.markdown("""
 :root {
     --primary-bg-color: #111; /* Darker charcoal */
     --card-bg-color: #1e1e28;
-    --text-color: #f1c40f; /* Soft gold */
+    --text-color: #7FFFD4; /* Soft gold */
     --subtle-text-color: #a0aec0;
     --border-color: #333;
 
@@ -216,7 +216,7 @@ with st.sidebar:
                     font_color='#e1e1e6',
                     xaxis=dict(gridcolor='#40404a'), yaxis=dict(gridcolor='#40404a')
                 )
-                fig.update_traces(line_color='#00b894', marker=dict(color='#ffb86c', size=8))
+                fig.update_traces(line_color='#00b894', marker=dict(color="#71ff6c", size=8))
                 st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
@@ -241,7 +241,6 @@ with col1:
                 st.info(f'📞 Crisis Resources:\n- National Suicide Prevention Lifeline: 988\n- Crisis Text Line: Text HOME to 741741')
             else:
                 st.success("Entry saved and reflection ready!", icon="✅")
-                # FIXED BLOCK: This now correctly renders the colorful icon inside the reflection box
                 st.markdown('<div class="reflection-box">', unsafe_allow_html=True)
                 st.markdown(f'#### <span class="colorful-icon">🪞</span>AI Reflection', unsafe_allow_html=True)
                 st.markdown(reflection)
